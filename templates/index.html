@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processamento de Imagem</title>
+</head>
+<body>
+    <h2>Envie uma imagem para processar</h2>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required><br><br>
+
+        <label><input type="checkbox" name="sharpen"> Aplicar Sharpening</label><br>
+        <label><input type="checkbox" name="blur"> Aplicar Blur</label><br>
+        <label><input type="checkbox" name="rotate"> Rotacionar 45°</label><br><br>
+
+        <input type="submit" value="Enviar e Processar">
+    </form>
+
+    <div style="display: flex; justify-content: space-around;">
+        {% if original_filename and processed_filename %}
+        <h3>Imagem Original</h3>
+        <img src="{{ url_for('static', filename=original_filename) }}" alt="Imagem Original" width="300"><br><br>
+
+        <h3>Imagem Processada</h3>
+        <img src="{{ url_for('static', filename=processed_filename) }}" alt="Imagem Processada" width="300">
+        {% endif %}
+    </div>
+    
+</body>
+</html>
